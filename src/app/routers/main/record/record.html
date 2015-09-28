@@ -1,0 +1,34 @@
+
+<h1 class="sub-header">{{params.year}}年{{params.month}}月考勤记录</h1>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>日期</th>
+            <th>是否法定假日</th>
+            <th>状态</th>
+            <th>上班签到</th>
+            <th>迟到(小时)</th>
+            <th>下班签到</th>
+            <th>早退(小时)</th>
+            <th>加班(小时)</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="d in monthData" class="active" ng-class="{'danger' : !d.isRestDay && (!d.start || !d.end) }">
+            <td>{{d.date}}</td>
+            <td ng-class="{'info' : d.isRestDay}">{{d.isRestDay ? '是' : ''}}</td>
+            <td ng-class="{'danger' : d.isEdited}">{{d.isEdited ? '已编辑' : ''}}</td>
+            <td>{{d.start}}</td>
+            <td ng-class="{'danger' : d.lateTime > 0}">{{d.lateTime === 0 ? '' : d.lateTime}}</td>
+            <td>{{d.end}}</td>
+            <td ng-class="{'danger' : d.earlierTime > 0}">{{d.earlierTime === 0  ? '' : d.earlierTime}}</td>
+            <td ng-class="{'success' : d.overTime > 0}">{{d.overTime === 0  ? '' : d.overTime}}</td>
+            <td><a ng-click="open(d.date)">编辑</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+    

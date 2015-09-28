@@ -1,0 +1,45 @@
+<div class="modal-header">
+    <h3 class="modal-title">{{date}} 打卡记录</h3>
+</div>
+<div class="modal-body">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th></th>
+            <th>打卡时间</th>
+            <th>是否补录</th>
+            <th>备注</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="d in dayData">
+            <td>{{$index === 0? '上班' : ''}}{{$index !== 0 && $index === dayData.length - 1? '下班' : ''}}</td>
+            <td>{{d.hour}}</td>
+            <td>{{d.isAppend ? '是' : ''}}</td>
+            <td>{{d.desc}}</td>
+            <td><a ng-click="delRecord(d.time)" ng-if="d.isAppend">删除</a></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <form class="form-inline" name="sub_form" ng-submit="addRecord()">
+        <div class="form-group">
+            <label>打卡时间</label>
+        </div>
+        <div class="form-group">
+            <span style="display: inline-block;">
+                <timepicker ng-model="rec.time" show-meridian="false"></timepicker>
+            </span>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail2">未打卡原因</label>
+            <input type="text" class="form-control" name="desc" ng-model="rec.desc" required id="exampleInputEmail2" placeholder="未打卡原因">
+        </div>
+        <button type="submit" class="btn btn-primary">添加纪录</button>
+    </form>
+</div>
+<div class="modal-footer">
+    <!--<button class="btn btn-primary" type="button" ng-click="ok()">保存</button>-->
+    <button class="btn btn-warning" type="button" ng-click="cancel()">关闭</button>
+</div>

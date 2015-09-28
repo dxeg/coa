@@ -7,6 +7,7 @@
 
   /** @ngInject */
   function routeConfig($stateProvider, $urlRouterProvider) {
+      $urlRouterProvider.when('/main','/main/index');
     $stateProvider
         .state('login', {
             url: '/',
@@ -24,6 +25,11 @@
             url: '/index',
             controller: 'MainIndexController',
             templateUrl: 'app/routers/main/index/index.html'
+        })
+        .state('main.record', {
+            url: '/record/:year/:month',
+            controller: 'MainRecordController',
+            templateUrl: 'app/routers/main/record/record.html'
         });
 
     $urlRouterProvider.otherwise('/');

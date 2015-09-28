@@ -1,0 +1,8 @@
+<div class="ib">
+    <input type="file" style="width: 1px;height: 1px;opacity: 0;">
+    <button type="button" class="btn btn-default as-btn" ng-click="upload()" ng-if="!loading">{{apkInfo ? '重新上传' : '上传'}}</button>
+    <div class="as-loading" ng-if="loading">
+        <span class="as-loading-circle"></span>
+        <span class="as-loading-text">{{loading.progress}}</span>
+    </div>
+</div>
